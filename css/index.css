@@ -1,0 +1,39 @@
+body {
+    /* font-family: 'Roboto', sans-serif; */
+    background-color: #ffffff;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.navbar-custom {
+    background-color: rgba(0, 0, 0, 0.2) !important;
+    transition: background-color 0.4s ease-out;
+}
+
+.jumbotron {
+    position: static;
+    background-image: url("../img/header-bg.png");
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center center;
+    background-size: cover;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+}
+
+.jumbotron h1, .jumbotron p {
+    color: #FFF;
+}
+
+.jumbotron input {
+    color: #FFF;
+    background-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.jumbotron input:focus {
+    color: #FFF;
+}
+
+.jumbotron .form-control::-webkit-input-placeholder {
+    color: #FFF;
+}
