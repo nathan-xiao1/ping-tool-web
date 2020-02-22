@@ -54,31 +54,55 @@
 
     <section id="result-section">
         <div class="container">
-            <table class="table" id="result-table">
-                <thead>
-                    <tr>
-                        <th scope="col">Hostname</th>
-                        <th scope="col">Status</th>
-                    </tr>
-                </thead>
-                <tbody id="result-table-entries">
-                </tbody>
-            </table>
+            <div class="card">
+                <h5 class="card-header" id="result-hostname-header">Result: 127.0.0.1</h5>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-8 my-1 result">
+                            <div class="card">
+                                <div class="card-body" id="result-outputs">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 d-flex">
+                            <table class="table table-sm table-borderless my-auto">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" colspan="2">Round Trip Time (rtt)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-right">Min:</td>
+                                        <td id="rtt-min">0 ms</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-right">Max:</td>
+                                        <td id="rtt-max">0 ms</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-right">Avg:</td>
+                                        <td id="rtt-avg">0 ms</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-        crossorigin="anonymous"></script>
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
-
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
     <script src="/static/js/ajax_ping.js"></script>
 
 </body>

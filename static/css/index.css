@@ -21,7 +21,8 @@ body {
     align-items: center;
 }
 
-.jumbotron h1, .jumbotron p {
+.jumbotron h1,
+.jumbotron p {
     color: #FFF;
 }
 
@@ -36,4 +37,14 @@ body {
 
 .jumbotron .form-control::-webkit-input-placeholder {
     color: #FFF;
+}
+
+#result-outputs {
+    min-height: 100px;
+}
+
+th,
+td {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
 }
