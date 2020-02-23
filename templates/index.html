@@ -44,9 +44,14 @@
                         <input type="text" id="hostname-input" class="form-control" placeholder="Hostname"
                             aria-label="Hostname" aria-describedby="hostname-submit">
                         <div class="input-group-append">
-                            <button class="btn btn-outline-light px-4" type="button" id="hostname-submit">Go!</button>
+                            <button class="btn btn-outline-light rounded-right px-4" type="button"
+                                id="hostname-submit">Go!</button>
+                        </div>
+                        <div class="invalid-feedback text-left">
+                            Invalid hostname or IP.
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -55,7 +60,10 @@
     <section id="result-section">
         <div class="container">
             <div class="card">
-                <h5 class="card-header" id="result-hostname-header">Result: 127.0.0.1</h5>
+                <h5 class="card-header" id="result-hostname-header">
+                    <span id="hostname"></span>
+                    (<span id="ip"></span>)
+                </h5>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-8 my-1 result">
@@ -65,7 +73,7 @@
                             </div>
                         </div>
                         <div class="col-4 d-flex">
-                            <table class="table table-sm table-borderless my-auto">
+                            <table class="table table-sm my-auto">
                                 <thead>
                                     <tr>
                                         <th class="text-center" colspan="2">Round Trip Time (rtt)</th>

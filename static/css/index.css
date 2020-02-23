@@ -39,8 +39,16 @@ body {
     color: #FFF;
 }
 
+#hostname-submit {
+    color: white !important;
+}
+
 #result-outputs {
     min-height: 100px;
+}
+
+table {
+    table-layout: fixed;
 }
 
 th,
