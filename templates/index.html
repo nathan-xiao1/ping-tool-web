@@ -25,6 +25,9 @@
     <nav class="navbar navbar-dark navbar-expand-lg fixed-top w-100 navbar-custom">
         <div class="container">
             <a class="navbar-brand" href="#">Navbar</a>
+            <span class="navbar-text">
+                Server IP: {{self_ip }}
+            </span>
         </div>
     </nav>
 
@@ -43,8 +46,16 @@
                         <input type="text" id="hostname-input" class="form-control" placeholder="Hostname"
                             aria-label="Hostname" aria-describedby="hostname-submit">
                         <div class="input-group-append">
-                            <button class="btn btn-outline-light rounded-right px-4" type="button"
-                                id="hostname-submit">Go!</button>
+                            <button class="btn btn-outline-light rounded-right px-4 text-center" type="button"
+                                id="hostname-submit-btn">
+                                <div class="d-flex justify-content-center">
+                                    <span id="hostname-submit-btn-text">Go!</span>
+                                    <div class="spinner-border spinner-border-sm text-info" style="display: none;"
+                                        id="hostname-submit-btn-spinner" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                </div>
+                            </button>
                         </div>
                         <div class="invalid-feedback text-left">
                             Invalid hostname or IP.
@@ -115,10 +126,10 @@
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
+        </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-    </script>
+        </script>
     <script src="/static/js/index.js"></script>
     <script src="/static/js/ajax_ping.js"></script>
 

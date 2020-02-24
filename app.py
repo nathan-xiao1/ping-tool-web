@@ -1,13 +1,26 @@
 from flask import Flask, render_template, request, jsonify
 from pythonping import ping
 from urllib.parse import urlparse
+from requests import get
 import json, socket
 
 app = Flask(__name__)
 
+self_ip = None
+
+@app.before_first_request
+def init():
+    global self_ip
+    self_ip = get('https://api.ipify.org').text
+    print(self_ip)
+
+@app.context_processor
+def inject_user():
+    return dict(self_ip=self_ip)
 
 @app.route('/')
 def index():
+    
     return render_template("index.html")
 
 

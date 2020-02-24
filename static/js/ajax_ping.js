@@ -1,5 +1,6 @@
-$("#hostname-submit").click(function () {
-    reset_error()
+$("#hostname-submit-btn").click(function () {
+    reset_error();
+    displayLoading();
     $.post(
         "/ajax_ping",
         {
@@ -11,6 +12,7 @@ $("#hostname-submit").click(function () {
                 return;
             }
             handleResult(data);
+            loadingFinish();
         }
     )
 });
