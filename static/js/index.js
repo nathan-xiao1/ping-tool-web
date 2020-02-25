@@ -8,7 +8,7 @@ function handleResult(data) {
         $(resultCard).find(".result-output").append("<div><code>" + data.pings[i] + "</code> </div>")
     }
 
-    $(resultCard).find(".domain").text(data.domain);
+    $(resultCard).find(".title").text(data.title);
     // $(resultCard).find(".ip").text(data.ip);
     $(resultCard).find(".rtt-min").text(data.rtt_min + " ms");
     $(resultCard).find(".rtt-max").text(data.rtt_max + " ms");

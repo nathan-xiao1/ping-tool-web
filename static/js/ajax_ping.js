@@ -7,12 +7,12 @@ $("#hostname-submit-btn").click(function () {
             hostname: $("#hostname-input").val()
         },
         function (data) {
+            loadingFinish();
             if (data === undefined) {
                 error();
                 return;
             }
             handleResult(data);
-            loadingFinish();
         }
     )
 });

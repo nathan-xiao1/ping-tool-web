@@ -76,11 +76,12 @@
     <template id="result-template">
         <div class="card mb-3" id="result-card">
             <div class="card-header d-flex justify-content-between">
-                <h5 class="m-0" id="result-hostname-header">
-                    <span class="domain"></span>
-                    <span class="badge badge-success">Up</span>
+                <div class="d-flex align-items-center">
+                    <h5 class="title m-0"></h5>
+                    <span class="badge badge-success ml-2 mt-1"><h6 class="m-0">Up</h6></span>
                     <span class="badge badge-danger" style="display: none;">Down</span>
-                </h5>
+                </div>
+
                 <button type="button" class="close" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
