@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify
 from pythonping import ping
 from urllib.parse import urlparse
 from requests import get
-import json, socket
+import json, socket, re
 
 app = Flask(__name__)
 
@@ -20,24 +20,25 @@ def inject_user():
 
 @app.route('/')
 def index():
-    
     return render_template("index.html")
 
 
 @app.route('/ajax_ping', methods=["POST"])
 def ajax_ping(count=4):
-    url = urlparse(request.form["hostname"])
-    hostname = (url.netloc + url.path).rstrip('/')
+    hostname = request.form["hostname"]
+    hostname = re.sub(r"^(?:http|https|ftp):\/\/", "", hostname).rstrip('/')
+    domain = re.sub(r"^www.", "", hostname)
+    print(domain)
     try:
         response = ping(hostname, count=count)
         ip = socket.gethostbyname(hostname)
-        print(socket.getfqdn(ip))
+        print(response.success())
     except:
         return ('', 204)
     data = []
     for res in response:
         data.append(str(res))
-    return jsonify(hostname=hostname, ip=ip,rtt_min=response.rtt_min_ms, rtt_max=response.rtt_max_ms, rtt_avg=response.rtt_avg_ms, pings=data)
+    return jsonify(domain=domain, ip=ip,rtt_min=response.rtt_min_ms, rtt_max=response.rtt_max_ms, rtt_avg=response.rtt_avg_ms, pings=data, success=response.success())
 
 
 if __name__ == '__main__':

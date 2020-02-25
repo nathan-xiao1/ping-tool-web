@@ -8,11 +8,16 @@ function handleResult(data) {
         $(resultCard).find(".result-output").append("<div><code>" + data.pings[i] + "</code> </div>")
     }
 
-    $(resultCard).find(".hostname").text(data.hostname);
-    $(resultCard).find(".ip").text(data.ip);
+    $(resultCard).find(".domain").text(data.domain);
+    // $(resultCard).find(".ip").text(data.ip);
     $(resultCard).find(".rtt-min").text(data.rtt_min + " ms");
     $(resultCard).find(".rtt-max").text(data.rtt_max + " ms");
     $(resultCard).find(".rtt-avg").text(data.rtt_avg + " ms");
+
+    if (!data.success) {
+        $(resultCard).find(".badge-success").css("display", "none")
+        $(resultCard).find(".badge-danger").css("display", "inline-block")
+    }
 
     $("#result-container").prepend(resultCard);
 
