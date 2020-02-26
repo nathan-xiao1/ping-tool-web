@@ -2,7 +2,7 @@ $("#hostname-submit-btn").click(function () {
     reset_error();
     displayLoading();
     $.post(
-        "/ajax/ping",
+        "/ajax/whois",
         {
             hostname: $("#hostname-input").val()
         },

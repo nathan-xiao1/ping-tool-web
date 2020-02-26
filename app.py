@@ -1,8 +1,9 @@
-from flask import Flask, render_template, request, jsonify
-from pythonping import ping
+from flask import Flask, render_template, request, jsonify, redirect, url_for
+from pythonping import ping as pythonping
 from requests import get
 from bs4 import BeautifulSoup
 import json, socket, re
+import whois as pythonwhois
 
 app = Flask(__name__)
 
@@ -27,15 +28,29 @@ def inject_user():
 
 @app.route('/')
 def index():
-    return render_template("index.html")
+    return redirect(url_for('ping'))
 
+@app.route('/ping')
+def ping():
+    return render_template("ping.html")
 
-@app.route('/ajax_ping', methods=["POST"])
+@app.route('/whois')
+def whois():
+    return render_template("whois.html")
+
+@app.route('/ajax/whois', methods=["POST"])
+def ajax_whois():
+    hostname = re.sub(r"^(?:http|https|ftp):\/\/", "", request.form["hostname"]).rstrip('/')
+    # who = pythonwhois(hostname)
+    # print(who.__dict__)
+    return ('', 204)
+
+@app.route('/ajax/ping', methods=["POST"])
 def ajax_ping(count=4):
     hostname = re.sub(r"^(?:http|https|ftp):\/\/", "", request.form["hostname"]).rstrip('/')
     title = getPageTitle("http://" + hostname)
     try:
-        response = ping(hostname, count=count)
+        response = pythonping(hostname, count=count)
     except:
         return ('', 204)
     data = []
