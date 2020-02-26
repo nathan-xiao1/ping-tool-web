@@ -1,140 +1,110 @@
-<!doctype html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% block title %}Bootstrap{% endblock %}
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <!-- Custom Font -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet">
+{% block style %}
+<link rel="stylesheet" href="/static/css/index.css">
+{% endblock %}
 
-    <link rel="stylesheet" href="/static/css/index.css">
+{% block content %}
 
-    <title>Bootstrap</title>
-</head>
-
-<body>
-
-    <!-- Navbar -->
-    <nav class="navbar navbar-dark navbar-expand-lg fixed-top w-100 navbar-custom">
-        <div class="container">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <span class="navbar-text">
-                Server IP: {{self_ip }}
-            </span>
-        </div>
-    </nav>
-
-    <!-- Jumbotron -->
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <div class="row">
-                <div class="col-6 mx-auto text-center my-5">
-                    <h1 class="display-4 font-weight-bold text-uppercase">Ping</h1>
-                    <p class="lead">Test the reachability of a host and measure round-trip time</p>
-                </div>
+<!-- Jumbotron -->
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-6 mx-auto text-center my-5">
+                <h1 class="display-4 font-weight-bold text-uppercase">Ping</h1>
+                <p class="lead">Test the reachability of a host and measure round-trip time</p>
             </div>
-            <div class="row">
-                <div class="col-6 mx-auto text-center mb-3">
-                    <div class="input-group mb-3">
-                        <input type="text" id="hostname-input" class="form-control" placeholder="Hostname"
-                            aria-label="Hostname" aria-describedby="hostname-submit">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-light rounded-right px-4 text-center" type="button"
-                                id="hostname-submit-btn">
-                                <div class="d-flex justify-content-center">
-                                    <span id="hostname-submit-btn-text">Go!</span>
-                                    <div class="spinner-border spinner-border-sm text-info" style="display: none;"
-                                        id="hostname-submit-btn-spinner" role="status">
-                                        <span class="sr-only">Loading...</span>
-                                    </div>
+        </div>
+        <div class="row">
+            <div class="col-6 mx-auto text-center mb-3">
+                <div class="input-group mb-3">
+                    <input type="text" id="hostname-input" class="form-control" placeholder="Hostname"
+                        aria-label="Hostname" aria-describedby="hostname-submit">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-light rounded-right px-4 text-center" type="button"
+                            id="hostname-submit-btn">
+                            <div class="d-flex justify-content-center">
+                                <span id="hostname-submit-btn-text">Go!</span>
+                                <div class="spinner-border spinner-border-sm text-info" style="display: none;"
+                                    id="hostname-submit-btn-spinner" role="status">
+                                    <span class="sr-only">Loading...</span>
                                 </div>
-                            </button>
-                        </div>
-                        <div class="invalid-feedback text-left">
-                            Invalid hostname or IP.
+                            </div>
+                        </button>
+                    </div>
+                    <div class="invalid-feedback text-left">
+                        Invalid hostname or IP.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<section id="result-section">
+    <div class="container" id="result-container">
+    </div>
+</section>
+
+<!-- Template -->
+<template id="result-template">
+    <div class="card mb-3" id="result-card">
+        <div class="card-header d-flex justify-content-between">
+            <div class="d-flex align-items-center">
+                <h5 class="title m-0"></h5>
+                <span class="badge badge-success ml-2 mt-1">
+                    <h6 class="m-0">Up</h6>
+                </span>
+                <span class="badge badge-danger" style="display: none;">Down</span>
+            </div>
+
+            <button type="button" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-8 my-1 result">
+                    <div class="card">
+                        <div class="card-body result-output">
                         </div>
                     </div>
-
+                </div>
+                <div class="col-4 d-flex">
+                    <table class="table table-sm my-auto">
+                        <thead>
+                            <tr>
+                                <th class="text-center" colspan="2">Round Trip Time (rtt)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-right">Min:</td>
+                                <td class="rtt-min">0 ms</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right">Max:</td>
+                                <td class="rtt-max">0 ms</td>
+                            </tr>
+                            <tr>
+                                <td class="text-right">Avg:</td>
+                                <td class="rtt-avg">0 ms</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
+</template>
 
-    <section id="result-section">
-        <div class="container" id="result-container">
-        </div>
-    </section>
+{% endblock %}
 
-    <!-- Template -->
-    <template id="result-template">
-        <div class="card mb-3" id="result-card">
-            <div class="card-header d-flex justify-content-between">
-                <div class="d-flex align-items-center">
-                    <h5 class="title m-0"></h5>
-                    <span class="badge badge-success ml-2 mt-1"><h6 class="m-0">Up</h6></span>
-                    <span class="badge badge-danger" style="display: none;">Down</span>
-                </div>
-
-                <button type="button" class="close" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-8 my-1 result">
-                        <div class="card">
-                            <div class="card-body result-output">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4 d-flex">
-                        <table class="table table-sm my-auto">
-                            <thead>
-                                <tr>
-                                    <th class="text-center" colspan="2">Round Trip Time (rtt)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="text-right">Min:</td>
-                                    <td class="rtt-min">0 ms</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-right">Max:</td>
-                                    <td class="rtt-max">0 ms</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-right">Avg:</td>
-                                    <td class="rtt-avg">0 ms</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </template>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-        </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-        </script>
-    <script src="/static/js/index.js"></script>
-    <script src="/static/js/ajax_ping.js"></script>
-
-</body>
-
-</html>
+{% block script %}
+<script src="/static/js/index.js"></script>
+<script src="/static/js/ajax_ping.js"></script>
+{% endblock %}
