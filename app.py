@@ -1,8 +1,7 @@
 from flask import Flask, render_template, request, jsonify, redirect, url_for
 from pythonping import ping as pythonping
 from requests import get
-from bs4 import BeautifulSoup
-import json, socket, re
+import json, re
 import whois as pythonwhois
 
 app = Flask(__name__)
@@ -41,8 +40,8 @@ def whois():
 @app.route('/ajax/whois', methods=["POST"])
 def ajax_whois():
     hostname = re.sub(r"^(?:http|https|ftp):\/\/", "", request.form["hostname"]).rstrip('/')
-    # who = pythonwhois(hostname)
-    # print(who.__dict__)
+    who = pythonwhois.whois(hostname)  
+    print(who.__dict__)
     return ('', 204)
 
 @app.route('/ajax/ping', methods=["POST"])
