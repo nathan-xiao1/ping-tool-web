@@ -41,8 +41,8 @@ def whois():
 def ajax_whois():
     hostname = re.sub(r"^(?:http|https|ftp):\/\/", "", request.form["hostname"]).rstrip('/')
     who = pythonwhois.whois(hostname)  
-    print(who.__dict__)
-    return ('', 204)
+    print(who)
+    return who
 
 @app.route('/ajax/ping', methods=["POST"])
 def ajax_ping(count=4):
